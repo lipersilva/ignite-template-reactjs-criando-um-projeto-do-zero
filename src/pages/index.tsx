@@ -10,6 +10,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
+import { formatDate } from '../utils/formatDate';
 
 interface Post {
   uid?: string;
@@ -28,9 +29,10 @@ interface PostPagination {
 
 interface HomeProps {
   postsPagination: PostPagination;
+  preview: boolean;
 }
 //talvez acrescentar : JSX.Element
-export default function Home({ postsPagination } : HomeProps) {
+export default function Home({ postsPagination, preview } : HomeProps) : JSX.Element {
   //TODO
   const formattedPost = postsPagination.results.map(post => {
     return {
@@ -94,7 +96,7 @@ export default function Home({ postsPagination } : HomeProps) {
                     <ul>
                       <li>
                         <FiCalendar/>
-                        {post.first_publication_date}
+                        {formatDate(post.first_publication_date)}
                       </li>
 
                       <li>
@@ -109,14 +111,23 @@ export default function Home({ postsPagination } : HomeProps) {
           <button type="button" onClick={handleNextPage}>
             Carregar mais posts
           </button>
-        )}        
+        )} 
+
+        {preview && (
+            <aside>
+              <Link href="/api/exit-preview">
+                <a className={commonStyles.preview}> Sair do modo Preview</a>
+              </Link>
+            </aside>
+        )}
+
         </div>
       </main>
     </>
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async ({preview = false}) => {
   const prismic = getPrismicClient();
   const postsResponse = await prismic.query(
     [Prismic.Predicates.at('document.type', 'posts')],
@@ -145,6 +156,7 @@ export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       postsPagination,
+      preview,
     },
   };
 };

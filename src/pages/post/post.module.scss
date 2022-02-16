@@ -1,65 +1,105 @@
-.banner{
+.banner {
   width: 100%;
   height: 25rem;
   object-fit: cover;
-
 }
 
-.post{
+.post {
   h2 {
-    font-size: 2.25rem;
-    color: var(--heading);
+    font-size: 2.23rem;
+    color: var(--gray-200);
     margin: 3rem 0;
   }
 
-  p, span, a, ul {
+  p,
+  span,
+  a,
+  ul {
     font-size: 1.125rem;
-    line-height:1.8;
+    line-height: 1.8;
     margin: 1.8rem 0;
+    text-align: justify;
   }
 
-  a{
-    color: var(--highlight);
+  a {
+    color: var(--pink);
   }
 
   strong {
     font-weight: 700;
-    color: var(--body);
+    color: var(--gray-200);
   }
 
   ul {
     padding-left: 1.5rem;
 
-    li{
+    li {
       margin: 0.5rem 0;
     }
   }
 }
 
-.postTop{
-  >h1 {
-    font-size:3rem;
-    color: var(--heading);
+.postTitle {
+  margin-bottom: 4rem;
+
+  > h1 {
+    font-size: 3rem;
+    color: var(--gray-200);
     margin-bottom: 1.5rem;
   }
-  >ul {
+
+  > ul {
     padding: 0;
     margin: 0;
     list-style: none;
     display: flex;
-    margin-bottom: 4rem;
 
-    & li{ 
+    & li {
       margin: 0;
       font-size: 0.875rem;
 
       & svg {
-        margin-right: 0.5rem;;
+        margin-right: 0.5rem;
       }
 
       & + li {
-        margin-left: 1.625rem
+        margin-left: 1.625rem;
       }
     }
+  }
+
+  > span {
+    margin-top: 1rem;
+    display: block;
+    font-style: italic;
+    font-size: 0.875rem;
+    color: var(--gray);
+  }
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--black-200);
+
+  h3 {
+    font-size: 1.125rem;
+    font-weight: 400;
+    color: var(--gray-200);
+    margin-bottom: 0.5rem;
+  }
+
+  a {
+    color: var(--pink);
+    font-weight: 600;
+  }
+
+  div {
+    padding-top: 3rem;
+  }
+
+  div + div {
+    text-align: right;
   }
 }
